@@ -2,4 +2,9 @@
 h2 {
     color:#FB8E54;
 }
+.promo-bg {
+    background-image: url(images/hugs\ +\ kisses\ plushie\ company\ logo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 /*orange heading color: #FB8E54 */
