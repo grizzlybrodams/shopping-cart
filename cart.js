@@ -1,3 +1,5 @@
+
+
 // open cart modal
 const cart = document.querySelector('#cart');
 const cartModalOverlay = document.querySelector('.cart-modal-overlay');
@@ -26,7 +28,7 @@ cartModalOverlay.addEventListener('click', (e) => {
 // end of close cart modal
 
 // add products to cart
-const addToCart = document.getElementsByClassName('add-to-cart');
+const addToCart = document.getElementById('add-to-cart');
 const productRow = document.getElementsByClassName('product-row');
 
 for (var i = 0; i < addToCart.length; i++) {
@@ -102,6 +104,10 @@ function changeQuantity(event) {
   }
   updateCartPrice()
 }
+
+
+
+
 // end of update quantity input
 
 // update total price
