@@ -30,7 +30,7 @@ $sql = "CREATE TABLE AnimalPlushie (
     )";
     
     if (mysqli_query($conn, $sql)) {
-      echo "Table Animalplusie created successfully";
+      echo "Table Animalplushie created successfully";
     } else {
       echo "Error creating table: " . mysqli_error($conn);
     }
@@ -47,7 +47,7 @@ $sql = "CREATE TABLE AnimalPlushie (
         )";
         
         if (mysqli_query($conn, $sql)) {
-          echo "Table Clownplusie created successfully";
+          echo "Table Clownplushie created successfully";
         } else {
           echo "Error creating table: " . mysqli_error($conn);
         }

@@ -1,3 +1,77 @@
+<?php
+
+session_start();
+$host = "localhost"; 
+
+ 
+$username = "root"; 
+
+
+$password = ""; 
+
+$database = "shoppingcart";
+
+// Create a database connection
+$conn = new mysqli($host, $username, $password, $database);
+
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if (isset($_POST['code']) && $_POST['code']!="")
+{
+    $code = $_POST['code'];
+    $result = mysqli_query(
+    $con,
+    "SELECT * FROM `products` WHERE `code`='$code'"
+    );
+    $row = mysqli_fetch_assoc($result);
+    $id = $row['id'];
+    $itemName = $row['item name'];
+    $price = $row['price'];
+    $image = $row['image'];
+    
+    $cartArray = array(
+        $code=>array(
+        'id'=>$id,
+        'item name'=>$itemName,
+        'price'=>$price,
+        'quantity'=>1,
+        'image'=>$image)
+    );
+
+
+
+    if(empty($_SESSION["shopping_cart"])) {
+        $_SESSION["shopping_cart"] = $cartArray;
+        $status = "<div class='box'>Product is added to your cart!</div>";
+    }else{
+        $array_keys = array_keys($_SESSION["shopping_cart"]);
+        if(in_array($code,$array_keys)) {
+        $status = "<div class='box' style='color:red;'>
+        Product is already added to your cart!</div>";	
+        } else {
+        $_SESSION["shopping_cart"] = array_merge(
+        $_SESSION["shopping_cart"],
+        $cartArray
+        );
+        $status = "<div class='box'>Product is added to your cart!</div>";
+        }
+    
+        }
+    }
+
+?>
+
+
+
+
+
+
+
+
+
 
 <!DOCTYPE html>
 
@@ -100,27 +174,21 @@
 -->
 
 
-<div class="cart-modal-overlay">
-    <div class="cart-modal">
-      <i id="close-btn" class="fas fa-times"></i>
-        <h1 class="cart-is-empty">Cart is empty</h1>
-      
-        <div class="product-rows">
-        </div>
-        <div class="total">
-          <h1 class="cart-total">TOTAL</h1>
-            <span class="total-price">$0</span>
-              <button class="purchase-btn">PURCHASE</button>
-        </div>
-      </div>
+<?php
+if(!empty($_SESSION["shopping_cart"])) {
+$cart_count = count(array_keys($_SESSION["shopping_cart"]));
+?>
+<div class="cart_div">
+<a href="cart.php"><img src="cart-icon.png" /> Cart<span>
+<?php echo $cart_count; ?></span></a>
 </div>
+<?php
+}
+?>
 
 
 
-<div class="cart-btn">
-	<i id="cart" class="fa-solid fa-cart-arrow-down fa-lg"></i>
-	<span class ="cart-quantity">0</span>
-</div>
+
 
 <!-- PRODUCT LIST 1 -->
 <div class="product-row">
@@ -149,8 +217,8 @@
 
 			</div>
             
-		</div> <!--is this how you code? before hand you had it at a closing tag so it wouldn't do anything -->
-        <div class="picture-of-kittens" >
+		</div> 
+        <div>
             <button  id="add-to-cart">Add to cart</button>
         </div>
 
