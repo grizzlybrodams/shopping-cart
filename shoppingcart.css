@@ -7,6 +7,14 @@ h2 {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.about-div-1{
+  background-image: url("images/crochet-div-background.png");
+}
+
+.about-div-2{
+  background-image: url("images/crochet-div-backgorund-2.png");
+}
 /*orange heading color: #FB8E54 */
 
 
