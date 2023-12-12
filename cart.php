@@ -38,7 +38,7 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
    .cart-container{
     padding: 50px 150px;
 }
-.
+
 
 </style>
 
