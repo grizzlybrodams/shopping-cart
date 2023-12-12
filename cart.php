@@ -56,15 +56,37 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
 </script>
     <link href="shoppingcart.css" rel="stylesheet" type="text/css" />
 
+<style>
+	header {
+		background-color: #eee;
+		border-bottom: 1px solid #dddddd;
+	}
+
+	
+	nav {
+		background-color: #ffffff;
+		border-bottom: 1px solid #dddddd;
+	}
+	
+	.nav-link, .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+		color: orange;
+		font-weight: bold;
+	}
+	
+	header img {
+		border-radius: 10px;
+	}
+</style>
+
 </head>
 
 <header class="py-3">
     <div class="container d-flex flex-wrap justify-content-between">
-      <a href="index.html" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
-        <img src="images/hugs + kisses plushie company logo.png" alt="Company Name." style="width: 100px; height: 100px; background:gray;">
+      <a href="index.php" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
+        <img src="images/hugs + kisses plushie company logo.png" alt="Hugs + Kisses Plushie Company." style="width: 100px; height: 100px; background:gray;">
       </a>
-      <form class="col-12 col-lg-3 mb-3 mb-lg-0" role="search">
-        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+      <form class="col-12 col-lg-3 mb-3 mb-lg-0 d-flex" role="search">
+        <input type="search" class="form-control align-self-center" placeholder="Search..." aria-label="Search">
       </form>
     </div>
 </header>

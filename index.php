@@ -65,6 +65,9 @@ if(empty($_SESSION["shopping_cart"])) {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://kit.fontawesome.com/de60f73fe8.js" crossorigin="anonymous"></script>
+
+<link href="shoppingcart.css" rel="stylesheet" type="text/css">
+
 <script>
 	tailwind.config = {
 		plugins: [
@@ -72,10 +75,28 @@ if(empty($_SESSION["shopping_cart"])) {
 		],
 	}
 </script>
-    <link href="shoppingcart.css" rel="stylesheet" type="text/css" />
 
+<style>
+	header {
+		background-color: #eee;
+		border-bottom: 1px solid #dddddd;
+	}
 
-
+	
+	nav {
+		background-color: #ffffff;
+		border-bottom: 1px solid #dddddd;
+	}
+	
+	.nav-link, .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+		color: orange;
+		font-weight: bold;
+	}
+	
+	header img {
+		border-radius: 10px;
+	}
+</style>
 
 
 
@@ -85,11 +106,11 @@ if(empty($_SESSION["shopping_cart"])) {
 
 <header class="py-3">
     <div class="container d-flex flex-wrap justify-content-between">
-      <a href="index.html" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
+      <a href="index.php" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
         <img src="images/hugs + kisses plushie company logo.png" alt="Hugs + Kisses Plushie Company." style="width: 100px; height: 100px; background:gray;">
       </a>
-      <form class="col-12 col-lg-3 mb-3 mb-lg-0" role="search">
-        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+      <form class="col-12 col-lg-3 mb-3 mb-lg-0 d-flex" role="search">
+        <input type="search" class="form-control align-self-center" placeholder="Search..." aria-label="Search">
       </form>
     </div>
 </header>
