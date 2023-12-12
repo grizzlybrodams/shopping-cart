@@ -108,6 +108,30 @@ if(empty($_SESSION["shopping_cart"])) {
           <a class="nav-link" href="about.html">About</a>
         </li>
       </ul>
+
+	  
+<?php
+if(!empty($_SESSION["shopping_cart"])) {
+$cart_count = count(array_keys($_SESSION["shopping_cart"]));
+?>
+<div class="cart_div">
+<a href="cart.php"><i class="fa-solid fa-cart-shopping fa-2x" style="color: #fb8e54;"></i> Cart<span>
+<?php echo $cart_count; ?></span></a>
+</div>
+<?php
+}
+?>
+
+<?php
+if(empty($_SESSION["shopping_cart"])) {
+?>
+<div class="cart_div">
+<a href="cart.php"><img src="cart-icon.png" /> Cart<span>
+<?php echo "Empty!"; ?></span></a>
+</div>
+<?php
+}
+?>
     </div>
   </div>
 </nav>
@@ -145,28 +169,6 @@ if(empty($_SESSION["shopping_cart"])) {
 
 
 
-<?php
-if(!empty($_SESSION["shopping_cart"])) {
-$cart_count = count(array_keys($_SESSION["shopping_cart"]));
-?>
-<div class="cart_div">
-<a href="cart.php"><i class="fa-solid fa-cart-shopping fa-lg" style="color: #fb8e54;"></i> Cart<span>
-<?php echo $cart_count; ?></span></a>
-</div>
-<?php
-}
-?>
-
-<?php
-if(empty($_SESSION["shopping_cart"])) {
-?>
-<div class="cart_div">
-<a href="cart.php"><img src="cart-icon.png" /> Cart<span>
-<?php echo "Empty!"; ?></span></a>
-</div>
-<?php
-}
-?>
 
 <?php
 //This pulls the data from the database and gives it simple names for the categories loop.
