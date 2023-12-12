@@ -1,3 +1,12 @@
+  header {
+	  background-color: #dddddd;
+  }
+  
+  nav {
+	  background-color: #ffffff;
+	  border-bottom: 1px solid #dddddd
+  }
+
 
 h2 {
     color:#FB8E54;
@@ -137,4 +146,3 @@ h2 {
   }
 
 
-  
