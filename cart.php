@@ -33,6 +33,10 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
 
 <body>
 
+<div> 
+<a href="index.php">Back To Site</a>
+</div>
+
 <div class="cart">
 <?php
 if(isset($_SESSION["shopping_cart"])){

@@ -133,6 +133,27 @@ if(empty($_SESSION["shopping_cart"])) {
 </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <?php
 if(!empty($_SESSION["shopping_cart"])) {
 $cart_count = count(array_keys($_SESSION["shopping_cart"]));
@@ -145,20 +166,81 @@ $cart_count = count(array_keys($_SESSION["shopping_cart"]));
 }
 ?>
 
+<?php
+if(empty($_SESSION["shopping_cart"])) {
+?>
+<div class="cart_div">
+<a href="cart.php"><img src="cart-icon.png" /> Cart<span>
+<?php echo "Empty!"; ?></span></a>
+</div>
+<?php
+}
+?>
 
 <?php
-$result = mysqli_query($con,"SELECT * FROM `products`");
-while($row = mysqli_fetch_assoc($result)){
-    echo "<div class='product_wrapper'>
+//This pulls the data from the database and gives it simple names for the categories loop.
+$category = mysqli_query($con,"SELECT * FROM `category`");
+foreach($category as $categories){
+	$cat_id = $categories['id'];
+	$cat_name = $categories['name'];
+?>
+
+<div class="product-row">
+	<div class="bg-white ">
+  		<div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+    	<h2 class=" font-bold tracking-tight text-gray-900"><?= $cat_name ?></h2>
+
+			<div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+
+<?php
+//This pulls the data from the database and gives it simple names for the products loop.
+$results = mysqli_query($con,"SELECT * FROM `products`");
+foreach($results as $row){
+	if ($row['cat_id'] == $cat_id) {
+
+	$code = $row['code'];
+	$image = $row['image'];
+	$name = $row['name'];
+	$price = $row['price'];
+?>
+
+<!-- This section is where the blocks are styled. To use the data from the database simply do "<?= $datatype ?>" in the field you're modifying. -->
+
+	<div class="group relative product_wrapper">
     <form method='post' action=''>
-    <input type='hidden' name='code' value=".$row['code']." />
-    <div class='image'><img src='".$row['image']."' /></div>
-    <div class='name'>".$row['name']."</div>
-    <div class='price'>$".$row['price']."</div>
-    <button type='submit' class='buy'>Buy Now</button>
-    </form>
-    </div>";
-        }
+    <input type='hidden' name='code' value="<?= $code ?>" />
+		<div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+			<img src="<?= $image ?>" alt="" class="product-image w-full object-cover object-center lg:h-full lg:w-full">
+		</div>
+		<div class="mt-4 flex justify-between">
+			<div>
+				<h3 class="text-sm text-gray-700">
+					<a>
+					<span aria-hidden="true" class="absolute"></span>
+					<?= $name ?>
+					</a>
+				</h3>
+			</div>
+			<p class="product-price text-sm font-medium text-gray-900">$<?= $price ?></p>
+		</div>
+			<button type='submit' class='buy'>Buy Now</button>
+	</form>
+	</div>
+
+<?php
+//This closes the products foreach loop.
+}
+}
+?>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<?php
+//This closes the categories foreach loop.
+}
 mysqli_close($con);
 ?>
 
@@ -171,178 +253,30 @@ mysqli_close($con);
 
 
 
-<!-- PRODUCT LIST 1 -->
-<div class="product-row">
-<div class="bg-white ">
-  <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-    <h2 class=" font-bold tracking-tight text-gray-900">Animal Plushies</h2>
-
-    <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-	
-		<div class="group relative">
-			<div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-				<img src="images/chicken-crochet.png" alt="" class="product-image w-full object-cover object-center lg:h-full lg:w-full">
-			</div>
-			<div class="mt-4 flex justify-between">
-				<div>
-					<h3 class="text-sm text-gray-700">
-						<a href="#">
-						<span aria-hidden="true" class="absolute inset-0"></span>
-						Item 1
-						</a>
-					</h3>
-					<p class="mt-1 text-sm text-gray-500">Chicken</p>
-				</div>
-				<p class="product-price text-sm font-medium text-gray-900">$20</p>
-				
-
-			</div>
-            
-		</div> 
-        <div>
-            <button  id="add-to-cart">Add to cart</button>
-        </div>
-
-		<div class="group relative">
-			<div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-				<img src="images/bat-crochet.png" alt="" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
-			</div>
-			<div class="mt-4 flex justify-between">
-				<div>
-					<h3 class="text-sm text-gray-700">
-						<a href="#">
-						<span aria-hidden="true" class="absolute inset-0"></span>
-						Item 2
-						</a>
-					</h3>
-					<p class="mt-1 text-sm text-gray-500">Bat</p>
-				</div>
-				<p class="text-sm font-medium text-gray-900">$35</p>
-			</div>
-		</div>
-		
-		<div class="group relative">
-			<div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-				<img src="images/triceratops-crochet.png" alt="" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
-			</div>
-			<div class="mt-4 flex justify-between">
-				<div>
-					<h3 class="text-sm text-gray-700">
-						<a href="#">
-						<span aria-hidden="true" class="absolute inset-0"></span>
-						Item 3
-						</a>
-					</h3>
-					<p class="mt-1 text-sm text-gray-500">Triceraptops</p>
-				</div>
-				<p class="text-sm font-medium text-gray-900">$45</p>
-			</div>
-		</div>
-		
-		<div class="group relative">
-			<div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-				<img src="images/cow-crochet.png" alt="" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
-			</div>
-			<div class="mt-4 flex justify-between">
-				<div>
-					<h3 class="text-sm text-gray-700">
-						<a href="#">
-						<span aria-hidden="true" class="absolute inset-0"></span>
-						Item 4
-						</a>
-					</h3>
-					<p class="mt-1 text-sm text-gray-500">Cow</p>
-				</div>
-				<p class="text-sm font-medium text-gray-900">$45</p>
-			</div>
-		</div>
-	</div>
-  </div>
-</div>
-</div>
 
 
-<!-- PRODUCT LIST 2 -->
-<div class="bg-white">
-  <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-    <h2 class="text-2xl font-bold tracking-tight text-gray-900">Clown Plushies</h2>
 
-    <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-	
-		<div class="group relative">
-			<div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-				<img src="images/purple-green-clown-2.png" alt="" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
-			</div>
-			<div class="mt-4 flex justify-between">
-				<div>
-					<h3 class="text-sm text-gray-700">
-						<a href="#">
-						<span aria-hidden="true" class="absolute inset-0"></span>
-						Item 1
-						</a>
-					</h3>
-					<p class="mt-1 text-sm text-gray-500">Purple + Green Clown</p>
-				</div>
-				<p class="text-sm font-medium text-gray-900">$55</p>
-			</div>
-		</div>
-		
-		<div class="group relative">
-			<div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-				<img src="images/garfield-clown.png" alt="" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
-			</div>
-			<div class="mt-4 flex justify-between">
-				<div>
-					<h3 class="text-sm text-gray-700">
-						<a href="#">
-						<span aria-hidden="true" class="absolute inset-0"></span>
-						Item 2
-						</a>
-					</h3>
-					<p class="mt-1 text-sm text-gray-500">Garfield Clown</p>
-				</div>
-				<p class="text-sm font-medium text-gray-900">$55</p>
-			</div>
-		</div>
-		
-		<div class="group relative">
-			<div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-				<img src="images/pink-brown-clown.png" alt="" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
-			</div>
-			<div class="mt-4 flex justify-between">
-				<div>
-					<h3 class="text-sm text-gray-700">
-						<a href="#">
-						<span aria-hidden="true" class="absolute inset-0"></span>
-						Item 3
-						</a>
-					</h3>
-					<p class="mt-1 text-sm text-gray-500">Pink + Brown Clown</p>
-				</div>
-				<p class="text-sm font-medium text-gray-900">$55</p>
-			</div>
-		</div>
-		
-		<div class="group relative">
-			<div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-				<img src="images/green-black-clown.png" alt="" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
-			</div>
-			<div class="mt-4 flex justify-between">
-				<div>
-					<h3 class="text-sm text-gray-700">
-						<a href="#">
-						<span aria-hidden="true" class="absolute inset-0"></span>
-						Item 4
-						</a>
-					</h3>
-					<p class="mt-1 text-sm text-gray-500">Black + Green Clown</p>
-				</div>
-				<p class="text-sm font-medium text-gray-900">$25</p>
-			</div>
-		</div>
-	</div>
-  </div>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
