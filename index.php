@@ -81,7 +81,7 @@ if(empty($_SESSION["shopping_cart"])) {
 <header class="py-3">
     <div class="container d-flex flex-wrap justify-content-between">
       <a href="index.html" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
-        <img src="images/hugs + kisses plushie company logo.png" alt="Company Name." style="width: 100px; height: 100px; background:gray;">
+        <img src="images/hugs + kisses plushie company logo.png" alt="Hugs + Kisses Plushie Company." style="width: 100px; height: 100px; background:gray;">
       </a>
       <form class="col-12 col-lg-3 mb-3 mb-lg-0" role="search">
         <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
@@ -97,24 +97,10 @@ if(empty($_SESSION["shopping_cart"])) {
     <div class="navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-			Dropdown
-			</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          <a class="nav-link" href="about.html">About</a>
         </li>
       </ul>
     </div>
@@ -290,13 +276,12 @@ mysqli_close($con);
 		<p class="col-md-4 mb-0 text-body-secondary">© 2023 Hugs + Kisses Plushie Company</p>
 
 		<a href="#" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-			<img src="images/hugs + kisses plushie company logo.png" alt="Company Name." style="height:100px;width:100px;background:gray">
+			<img src="images/hugs + kisses plushie company logo.png" alt="Hugs + Kisses Plushie Company." style="height:100px;width:100px;background:gray">
 		</a>
 
 		<ul class="nav col-md-4 justify-content-end">
-			<li class="nav-item"><a href="index" class="nav-link px-2 text-body-secondary">Home</a></li>
-			<li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Plushies</a></li>
-			<li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+			<li class="nav-item"><a href="index.php" class="nav-link px-2 text-body-secondary">Home</a></li>
+			<li class="nav-item"><a href="about.html" class="nav-link px-2 text-body-secondary">About</a></li>
 		</ul>
 </footer>
 </div>
