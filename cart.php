@@ -118,7 +118,7 @@ foreach ($_SESSION["shopping_cart"] as $product){
 <form method='post' action=''>
 <input type='hidden' name='code' value="<?php echo $product["code"]; ?>" />
 <input type='hidden' name='action' value="remove" />
-<button type='submit' class='remove'>Remove Item</button>
+<button type='submit' class='remove'><h3><b>Remove Item</b></h3></button>
 </form>
 </td>
 <td>
