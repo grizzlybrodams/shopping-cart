@@ -81,20 +81,7 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
         <li class="nav-item">
           <a class="nav-link" href="about.html">About</a>
         </li>
-        <!--<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-			Dropdown
-			</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>-->
+  
       </ul>
     </div>
   </div>
@@ -180,6 +167,20 @@ $total_price += ($product["price"]*$product["quantity"]);
 </div>
 
 </main>
+<div class="container">
+<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-5 border-top">
+		<p class="col-md-4 mb-0 text-body-secondary">© 2023 Hugs + Kisses Plushie Company</p>
+
+		<a href="#" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+			<img src="images/hugs + kisses plushie company logo.png" alt="Company Name." style="height:100px;width:100px;background:gray">
+		</a>
+
+		<ul class="nav col-md-4 justify-content-end">
+			<li class="nav-item"><a href="index.php" class="nav-link px-2 text-body-secondary">Home</a></li>
+			<li class="nav-item"><a href="about.html" class="nav-link px-2 text-body-secondary">About</a></li>
+		</ul>
+</footer>
+</div>
 </body>
 
 
