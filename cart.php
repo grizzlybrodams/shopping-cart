@@ -36,8 +36,9 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
 <title>Hugs + Kisses Plushie Company | Home</title>
 <style>
    .cart-container{
-    padding: 150px;
+    padding: 50px 150px;
 }
+.
 
 </style>
 
