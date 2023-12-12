@@ -1,47 +1,8 @@
-<?php
-session_start();
-$status="";
-if (isset($_POST['action']) && $_POST['action']=="remove"){
-if(!empty($_SESSION["shopping_cart"])) {
-    foreach($_SESSION["shopping_cart"] as $key => $value) {
-      if($_POST["code"] == $key){
-      unset($_SESSION["shopping_cart"][$key]);
-      $status = "<div class='box' style='color:red;'>
-      Product is removed from your cart!</div>";
-      }
-      if(empty($_SESSION["shopping_cart"]))
-      unset($_SESSION["shopping_cart"]);
-      }		
-}
-}
-
-if (isset($_POST['action']) && $_POST['action']=="change"){
-  foreach($_SESSION["shopping_cart"] as &$value){
-    if($value['code'] === $_POST["code"]){
-        $value['quantity'] = $_POST["quantity"];
-        break; // Stop the loop after we've found the product
-    }
-}
-  	
-}
-?>
-
-
-
-
 <!DOCTYPE html>
 
 <head>
 
-<title>Hugs + Kisses Plushie Company | Home</title>
-<style>
-   .cart-container{
-    padding: 50px 150px;
-}
-
-
-</style>
-
+<title>Hugs + Kisses Plushie Company | About Us</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -55,7 +16,7 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
 	}
 </script>
     <link href="shoppingcart.css" rel="stylesheet" type="text/css" />
-
+	
 <style>
 	header {
 		background-color: #eee;
@@ -76,9 +37,30 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
 	header img {
 		border-radius: 10px;
 	}
-</style>
 
+    .flex-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+	.h1-style{
+			font-size: 50px;
+			font-family: 'Roboto', serif;
+			text-align: center;
+			padding: 25px;
+		}
+	input{
+		border-color: #c0c0c0;
+		border-width: 3px;
+	}
+	textarea{
+		border-color: #c0c0c0;
+		border-width: 3px;
+	}
+</style>
 </head>
+<body>
 
 <header class="py-3">
     <div class="container d-flex flex-wrap justify-content-between">
@@ -99,97 +81,70 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
     <div class="navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="home.php">Home</a>
+          <a class="nav-link active" href="home.php">Home</a>
+        </li>
+		<li class="nav-item">
+          <a class="nav-link" href="products.php">Products</a>
+        </li>
+		<li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="contact.php">Contact</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="about.php">About</a>
         </li>
-  
       </ul>
+
+	  
+<?php
+if(!empty($_SESSION["shopping_cart"])) {
+$cart_count = count(array_keys($_SESSION["shopping_cart"]));
+?>
+<div class="cart_div">
+<a href="cart.php"><i class="fa-solid fa-cart-shopping fa-2x" style="color: #fb8e54;"></i><span>
+<?php echo $cart_count; ?></span></a>
+</div>
+<?php
+}
+?>
+
+<?php
+if(empty($_SESSION["shopping_cart"])) {
+?>
+<div class="cart_div">
+<a href="cart.php"><img src="cart-icon.png" /> Cart<span>
+<?php echo "Empty!"; ?></span></a>
+</div>
+<?php
+}
+?>
     </div>
   </div>
 </nav>
+<main>
 
-<main class="cart-container">
+    <div class="flex-container">
+		
+		<div>
+		
+		<h1 class="h1-style">Contact Us Here</h1>
+		<form action="" method="" class="form-layout">
+		<label>Name: </label><br><input type="text"><br><br>
+		<label>Email: </label><br><input type="email"><br><br>
+		<label>Comment: </label><br><textarea></textarea><br><br>
+			
+		<input type="submit">
+		</form>
+		
+		</div>
+		<div><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3463.4674102292033!2d-95.3765117!3d29.76412329999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640bf491b59aab1%3A0x2f6eefee256ac1a1!2s1814%20Memorial%20Dr%2C%20Houston%2C%20TX%2077007!5e0!3m2!1sen!2sus!4v1701874808086!5m2!1sen!2sus" width="600" height="450" class="google-map" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>	
+	</div>
 
-<!--<div> 
-<a href="index.php">Back To Site</a>
-</div>-->
-
-<div class="cart">
-<?php
-if(isset($_SESSION["shopping_cart"])){
-    $total_price = 0;
-?>	
-<table class="table">
-<tbody>
-<tr>
-<td></td>
-<td>ITEM NAME</td>
-<td>QUANTITY</td>
-<td>UNIT PRICE</td>
-<td>ITEMS TOTAL</td>
-</tr>	
-<?php		
-foreach ($_SESSION["shopping_cart"] as $product){
-?>
-<tr>
-<td>
-<img src='<?php echo $product["image"]; ?>' width="200" height="200" />
-</td>
-<td><?php echo $product["name"]; ?><br />
-<form method='post' action=''>
-<input type='hidden' name='code' value="<?php echo $product["code"]; ?>" />
-<input type='hidden' name='action' value="remove" />
-<button type='submit' class='remove'><h2><b>Remove Item</b></h2></button>
-</form>
-</td>
-<td>
-<form method='post' action=''>
-<input type='hidden' name='code' value="<?php echo $product["code"]; ?>" />
-<input type='hidden' name='action' value="change" />
-<select name='quantity' class='quantity' onChange="this.form.submit()">
-<option <?php if($product["quantity"]==1) echo "selected";?>
-value="1">1</option>
-<option <?php if($product["quantity"]==2) echo "selected";?>
-value="2">2</option>
-<option <?php if($product["quantity"]==3) echo "selected";?>
-value="3">3</option>
-<option <?php if($product["quantity"]==4) echo "selected";?>
-value="4">4</option>
-<option <?php if($product["quantity"]==5) echo "selected";?>
-value="5">5</option>
-</select>
-</form>
-</td>
-<td><?php echo "$".$product["price"]; ?></td>
-<td><?php echo "$".$product["price"]*$product["quantity"]; ?></td>
-</tr>
-<?php
-$total_price += ($product["price"]*$product["quantity"]);
-}
-?>
-<tr>
-<td colspan="5" align="right">
-<strong>TOTAL: <?php echo "$".$total_price; ?></strong>
-</td>
-</tr>
-</tbody>
-</table>		
-  <?php
-}else{
-	echo "<h2>Your cart is empty!</h2>";
-	}
-?>
-</div>
-
-<div style="clear:both;"></div>
-
-<div class="message_box" style="margin:10px 0px;">
-<?php echo $status; ?>
-</div>
 
 </main>
+
+
+
+
 <div class="container">
 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-5 border-top">
 		<p class="col-md-4 mb-0 text-body-secondary">© 2023 Hugs + Kisses Plushie Company</p>
@@ -200,15 +155,12 @@ $total_price += ($product["price"]*$product["quantity"]);
 
 		<ul class="nav col-md-4 justify-content-end">
 			<li class="nav-item"><a href="home.php" class="nav-link px-2 text-body-secondary">Home</a></li>
-			<li class="nav-item"><a href="about.html" class="nav-link px-2 text-body-secondary">About</a></li>
+			<li class="nav-item"><a href="products.php" class="nav-link px-2 text-body-secondary">Products</a></li>
+			<li class="nav-item"><a href="contact.php" class="nav-link px-2 text-body-secondary">Contact</a></li>
+			<li class="nav-item"><a href="about.php" class="nav-link px-2 text-body-secondary">About</a></li>
 		</ul>
 </footer>
 </div>
+
+<script src="cart.js"></script>
 </body>
-
-
-
-
-
-
-</html>
